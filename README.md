@@ -17,7 +17,7 @@
 
 - ⚡ Fun fact **I want takoyaki**
 
-- 🔥 Want to take a look at my Microsoft Achievment? [Click Here](https://learn.microsoft.com/en-us/users/cedambal-9014/)
+- 🔥 Want to take a look at my Microsoft Achievements and Module That I take? [Click Here](https://learn.microsoft.com/en-us/users/cedambal-9014/)
 
 <h3 align="left">Connect with me:</h3>
 <p align="left">
