@@ -5,7 +5,7 @@
 
 <p align="left"> <a href="https://github.com/ryo-ma/github-profile-trophy"><img src="https://github-profile-trophy.vercel.app/?username=ambal-ced" alt="ambal-ced" /></a> </p>
 
-- 🔭 I’m currently working on [a website with postgresql and a application made from python](https://github.com/Ambal-Ced/ADBMSFINAL)
+- 🔭 I’m currently working on [a C# basics](https://github.com/Ambal-Ced/Start-up)
 
 - 🌱 I’m currently learning **C#, Java and Python**
 
