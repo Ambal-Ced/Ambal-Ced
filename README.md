@@ -16,11 +16,7 @@
 
 - 🔥 Want to take a look at my Microsoft Achievements and Module That I take? [Click Here](https://learn.microsoft.com/en-us/users/cedambal-9014/)
 
-<h3 align="left">Connect with me:</h3>
-<p align="left">
-<a href="https://stackoverflow.com/users/24069675" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/stack-overflow.svg" alt="24069675" height="30" width="40" /></a>
-</p>
-<h3 align="left">Languages and Tools:</h3>
+
 <div align="left">
   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg" height="40" alt="c logo"  />
   <img width="12" />
@@ -66,7 +62,7 @@
   <br>
 </div>
 
-
+<p align="left"> <a href="https://github.com/ryo-ma/github-profile-trophy"><img src="https://github-profile-trophy.vercel.app/?username=ambal-ced" alt="ambal-ced" /></a> </p>
 
 <p><img align="left" src="https://github-readme-stats.vercel.app/api/top-langs?username=ambal-ced&show_icons=true&locale=en&layout=compact" alt="ambal-ced" /></p>
 
@@ -80,5 +76,9 @@
 ### ✍️ Random Dev Quote
 ![](https://quotes-github-readme.vercel.app/api?type=horizontal&theme=tokyonight)
 
-
+<h3 align="left">Connect with me:</h3>
+<p align="left">
+<a href="https://stackoverflow.com/users/24069675" target="blank"><img align="center" src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/stack-overflow.svg" alt="24069675" height="30" width="40" /></a>
+</p>
+<h3 align="left">Languages and Tools:</h3>
 
