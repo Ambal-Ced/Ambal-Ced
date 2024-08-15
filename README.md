@@ -2,7 +2,7 @@
 <h1 align="center">Hi 👋, I'm @Ambal-Ced</h1>
 <h3 align="center">A passionate BSIT Student 3rd Year programmer</h3>
 
-- 🔭 I’m currently working on [a C# basics](https://github.com/Ambal-Ced/Start-up)
+- 🔭 I’m currently working on [a C# basics]()currently looking for the next project since the basics are done
 
 - 🌱 I’m currently learning **C#, Java and Python**
 
