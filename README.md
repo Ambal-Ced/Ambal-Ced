@@ -1,3 +1,5 @@
+![Header](./github-header-image.png)
+
 <p align="left"> <img src="https://komarev.com/ghpvc/?username=ambal-ced&label=Profile%20views&color=0e75b6&style=flat" alt="ambal-ced" /> </p>
 <h1 align="center">Hi 👋, I'm @Ambal-Ced</h1>
 <h3 align="center">A passionate BSIT Student 3rd Year programmer</h3>
