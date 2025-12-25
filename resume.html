@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Justine Cedrick R. Ambal | Portfolio</title>
+        <link rel="stylesheet" href="styles.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <!-- Navigation -->
+        <nav class="navbar">
+            <div class="logo">
+                <span class="logo-text">Justine</span>
+                <span class="logo-dot">.</span>
+            </div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="projects.html">Projects</a></li>
+            <li><a href="experience.html">Experience</a></li>
+            <li><a href="skills.html">Skills</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="resume.html" class="resume-btn active">Resume</a></li>
+        </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+
+    <!-- Resume Section -->
+    <section id="resume" class="section">
+        <div class="container">
+            <h1 class="page-title">My <span class="highlight">Resume</span></h1>
+            <div class="resume-container">
+                <div class="resume-image-container">
+                    <div class="resume-flip-container" id="resumeFlipContainer">
+                        <div class="resume-flip-inner">
+                            <div class="resume-flip-front">
+                                <img src="logo_resource/resume.jpg" alt="Justine Cedrick R. Ambal Resume" class="resume-image-display" id="resumeImage">
+                            </div>
+                            <div class="resume-flip-back">
+                                <img src="logo_resource/profsum.jpg" alt="Justine Cedrick R. Ambal Professional Summary" class="resume-image-display" id="profsumImage">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="resume-actions">
+                    <button class="btn primary-btn" id="downloadResumeBtn">
+                        <i class="fas fa-download"></i> Download Resume
+                    </button>
+                    <a href="contact.html" class="btn secondary-btn">
+                        <i class="fas fa-envelope"></i> Contact Me
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Links Section -->
+    <section class="section social-links-section">
+        <div class="container">
+            <div class="social-links-bottom">
+                <a href="https://github.com/Ambal-Ced" target="_blank"><i class="fab fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/ambal-ced3604/" target="_blank"><i class="fab fa-linkedin"></i></a>
+                <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-left">
+                    <p>&copy; 2024 Justine Cedrick R. Ambal. All rights reserved.</p>
+                </div>
+                <div class="footer-right">
+                    <a href="mailto:justinecedrick.ambal@gmail.com">justinecedrick.ambal@gmail.com</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="script.js"></script>
+    <script>
+        // Download Resume with both images
+        document.addEventListener('DOMContentLoaded', function() {
+            const downloadBtn = document.getElementById('downloadResumeBtn');
+            
+            if (downloadBtn) {
+                downloadBtn.addEventListener('click', async function() {
+                    try {
+                        // Show loading state
+                        const originalText = downloadBtn.innerHTML;
+                        downloadBtn.disabled = true;
+                        downloadBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Preparing Download...';
+                        
+                        // Create a new JSZip instance
+                        const zip = new JSZip();
+                        
+                        // Fetch both images
+                        const [resumeResponse, profsumResponse] = await Promise.all([
+                            fetch('logo_resource/resume.jpg'),
+                            fetch('logo_resource/profsum.jpg')
+                        ]);
+                        
+                        // Convert to blobs
+                        const resumeBlob = await resumeResponse.blob();
+                        const profsumBlob = await profsumResponse.blob();
+                        
+                        // Add files to zip
+                        zip.file('Justine_Cedrick_R_Ambal_Resume.jpg', resumeBlob);
+                        zip.file('Justine_Cedrick_R_Ambal_Professional_Summary.jpg', profsumBlob);
+                        
+                        // Generate zip file
+                        const zipBlob = await zip.generateAsync({ type: 'blob' });
+                        
+                        // Create download link
+                        const link = document.createElement('a');
+                        link.href = URL.createObjectURL(zipBlob);
+                        link.download = 'Justine_Cedrick_R_Ambal_Resume_Package.zip';
+                        document.body.appendChild(link);
+                        link.click();
+                        document.body.removeChild(link);
+                        
+                        // Clean up
+                        URL.revokeObjectURL(link.href);
+                        
+                        // Reset button
+                        downloadBtn.disabled = false;
+                        downloadBtn.innerHTML = originalText;
+                    } catch (error) {
+                        console.error('Error creating zip file:', error);
+                        alert('Error downloading resume. Please try again.');
+                        downloadBtn.disabled = false;
+                        downloadBtn.innerHTML = '<i class="fas fa-download"></i> Download Resume';
+                    }
+                });
+            }
+
+            // Easter egg: Double-click to flip and show professional summary
+            const flipContainer = document.getElementById('resumeFlipContainer');
+            if (flipContainer) {
+                let clickCount = 0;
+                let clickTimer = null;
+
+                flipContainer.addEventListener('click', function() {
+                    clickCount++;
+                    
+                    if (clickCount === 1) {
+                        clickTimer = setTimeout(function() {
+                            clickCount = 0;
+                        }, 300); // 300ms window for double-click
+                    } else if (clickCount === 2) {
+                        clearTimeout(clickTimer);
+                        clickCount = 0;
+                        
+                        // Toggle flip
+                        flipContainer.classList.toggle('flipped');
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html> 
