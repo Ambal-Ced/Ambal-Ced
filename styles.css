@@ -102,14 +102,248 @@ body::after {
     margin-left: clamp(16px, 4vw, 32px);
     justify-self: start;
     letter-spacing: -0.5px;
+    cursor: pointer;
+    position: relative;
+    display: inline-block;
+}
+
+.logo-container {
+    display: inline-block;
+    position: relative;
+    padding: 10px;
+    margin: -10px;
+    pointer-events: auto;
 }
 
 .logo-text {
     color: var(--text-color);
+    display: inline-block;
+}
+
+.logo-text span {
+    display: inline-block;
+    animation: none;
+}
+
+.logo.bouncing .logo-text span {
+    animation: waveBounce 1s ease-in-out infinite;
+}
+
+.logo.bouncing .logo-text span:nth-child(1) { animation-delay: 0s; }
+.logo.bouncing .logo-text span:nth-child(2) { animation-delay: 0.1s; }
+.logo.bouncing .logo-text span:nth-child(3) { animation-delay: 0.2s; }
+.logo.bouncing .logo-text span:nth-child(4) { animation-delay: 0.3s; }
+.logo.bouncing .logo-text span:nth-child(5) { animation-delay: 0.4s; }
+.logo.bouncing .logo-text span:nth-child(6) { animation-delay: 0.5s; }
+.logo.bouncing .logo-text span:nth-child(7) { animation-delay: 0.6s; }
+.logo.bouncing .logo-text span:nth-child(8) { animation-delay: 0.7s; }
+
+.logo.bouncing .logo-dot {
+    animation: waveBounce 1s ease-in-out infinite;
+    animation-delay: 0.8s;
+}
+
+@keyframes waveBounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    25% {
+        transform: translateY(-15px);
+    }
+    50% {
+        transform: translateY(0);
+    }
+    75% {
+        transform: translateY(-8px);
+    }
+}
+
+@keyframes sway {
+    0% { transform: translateX(0) rotate(0deg); }
+    25% { transform: translateX(-8px) rotate(-3deg); }
+    50% { transform: translateX(0) rotate(0deg); }
+    75% { transform: translateX(8px) rotate(3deg); }
+    100% { transform: translateX(0) rotate(0deg); }
+}
+
+.logo.shaking .logo-text span,
+.logo.shaking .logo-dot {
+    animation: sway 0.3s ease-in-out infinite;
+    transform-origin: center bottom;
+}
+
+.particle {
+    position: fixed;
+    pointer-events: none;
+    z-index: 10000;
+}
+
+.particle.circle {
+    border-radius: 50%;
+    background: #000;
+}
+
+.particle.box {
+    background: #000;
+}
+
+.particle.triangle {
+    width: 0;
+    height: 0;
+    background: transparent;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-bottom: 8px solid #000;
+}
+
+.logo.spinning-box-center {
+    position: relative;
+}
+
+.logo.spinning-box-center::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 60px;
+    height: 60px;
+    background: #000;
+    transform: translate(-50%, -50%) rotate(0deg);
+    animation: spinBoxContinuous 1s linear infinite;
+    z-index: 1;
+}
+
+@keyframes spinBoxContinuous {
+    0% { transform: translate(-50%, -50%) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+.logo.sliding .logo-text span {
+    position: relative;
+    animation: slideFromRight 0.4s ease-out forwards;
+    opacity: 0;
+}
+
+.logo.sliding .logo-text span:nth-child(1) { animation-delay: 0s; }
+.logo.sliding .logo-text span:nth-child(2) { animation-delay: 0.1s; }
+.logo.sliding .logo-text span:nth-child(3) { animation-delay: 0.2s; }
+.logo.sliding .logo-text span:nth-child(4) { animation-delay: 0.3s; }
+.logo.sliding .logo-text span:nth-child(5) { animation-delay: 0.4s; }
+.logo.sliding .logo-text span:nth-child(6) { animation-delay: 0.5s; }
+.logo.sliding .logo-text span:nth-child(7) { animation-delay: 0.6s; }
+.logo.sliding .logo-text span:nth-child(8) { animation-delay: 0.7s; }
+
+.logo.sliding .logo-dot {
+    animation: slideFromRight 0.4s ease-out forwards;
+    animation-delay: 0.8s;
+    opacity: 0;
+}
+
+@keyframes slideFromRight {
+    0% {
+        transform: translateX(200px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.logo.exploding .logo-text span,
+.logo.exploding .logo-dot {
+    animation: none;
+    transform: translate(var(--explode-x, 0), var(--explode-y, 0)) scale(0);
+    opacity: 0;
+    transition: all 0.5s ease-out;
+}
+
+.logo.recompressing {
+    position: relative;
+}
+
+.logo.recompressing .logo-text span,
+.logo.recompressing .logo-dot {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0;
+    animation: recompress 0.8s ease-in-out forwards;
+}
+
+@keyframes recompress {
+    0% {
+        transform: translate(-50%, -50%) scale(0) rotate(0deg);
+        opacity: 0;
+    }
+    50% {
+        transform: translate(-50%, -50%) scale(1.2) rotate(180deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(1) rotate(360deg);
+        opacity: 1;
+    }
+}
+
+.logo.spinning-box {
+    position: relative;
+}
+
+.logo.spinning-box::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 60px;
+    height: 60px;
+    background: #000;
+    transform: translate(-50%, -50%) rotate(0deg);
+    animation: spinBox 2s linear infinite;
+    z-index: 1;
+}
+
+@keyframes spinBox {
+    0% { transform: translate(-50%, -50%) rotate(0deg); }
+    100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+.logo.forming .logo-text span {
+    position: relative;
+    animation: formFromLeft 0.3s ease-out forwards;
+    opacity: 0;
+}
+
+.logo.forming .logo-text span:nth-child(1) { animation-delay: 0s; }
+.logo.forming .logo-text span:nth-child(2) { animation-delay: 0.1s; }
+.logo.forming .logo-text span:nth-child(3) { animation-delay: 0.2s; }
+.logo.forming .logo-text span:nth-child(4) { animation-delay: 0.3s; }
+.logo.forming .logo-text span:nth-child(5) { animation-delay: 0.4s; }
+.logo.forming .logo-text span:nth-child(6) { animation-delay: 0.5s; }
+.logo.forming .logo-text span:nth-child(7) { animation-delay: 0.6s; }
+.logo.forming .logo-text span:nth-child(8) { animation-delay: 0.7s; }
+
+.logo.forming .logo-dot {
+    animation: formFromLeft 0.3s ease-out forwards;
+    animation-delay: 0.8s;
+    opacity: 0;
+}
+
+@keyframes formFromLeft {
+    0% {
+        transform: translateX(-100px) rotate(-180deg);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0) rotate(0deg);
+        opacity: 1;
+    }
 }
 
 .logo-dot {
     color: var(--primary-color);
+    display: inline-block;
 }
 
 .nav-links {
@@ -263,6 +497,13 @@ body::after {
 }
 
 /* Typing Animation */
+.hero-content-index .typing-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
 .hero-content-about .typing-container {
     position: absolute;
     bottom: -60px;
@@ -275,15 +516,16 @@ body::after {
 .typing-text {
     font-size: 2rem;
     color: var(--text-color);
-    display: inline-block;
+    line-height: 2rem;
+    white-space: nowrap;
 }
 
 .typing-words {
-    margin-top: -19px;
-    display: inline-block;
     position: relative;
     min-width: 200px;
     height: 2rem;
+    line-height: 2rem;
+    display: inline-block;
 }
 
 .typing-words span {
@@ -291,6 +533,7 @@ body::after {
     left: 0;
     top: 0;
     font-size: 2rem;
+    line-height: 2rem;
     color: var(--primary-color);
     opacity: 0;
     animation: typing 8s linear infinite;
@@ -426,6 +669,8 @@ body::after {
     .hero-content-index .left-section .typing-container {
         order: 3;
         position: static;
+        display: flex;
+        align-items: center;
         justify-content: center;
         margin: 0 auto;
         width: 100%;
@@ -2101,20 +2346,25 @@ footer {
     .typing-container {
         position: static;
         margin-top: 20px;
+        display: flex;
+        align-items: center;
         justify-content: center;
     }
 
     .typing-text {
         font-size: 1.5rem;
+        line-height: 1.5rem;
     }
 
     .typing-words {
         min-width: 150px;
         height: 1.5rem;
+        line-height: 1.5rem;
     }
 
     .typing-words span {
         font-size: 1.5rem;
+        line-height: 1.5rem;
     }
 }
 
