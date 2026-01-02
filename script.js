@@ -1355,43 +1355,459 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-// Maintenance modal behavior — show on every visit
-document.addEventListener('DOMContentLoaded', () => {
-    const modal = document.getElementById('maintenance-modal');
-    if (!modal) return;
-    const backdrop = modal.querySelector('.maintenance-backdrop');
-    const closeBtn = modal.querySelector('.maintenance-close');
-    const okBtn = modal.querySelector('.maintenance-ok');
 
-    function openModal() {
-        if (modal.classList.contains('open')) return;
-        modal.classList.add('open');
-        modal.setAttribute('aria-hidden', 'false');
-        // prevent background scroll when modal open
-        document.body.style.overflow = 'hidden';
-        localStorage.setItem('maintenanceModalLastShown', Date.now().toString());
+// Certificate data and lightbox functionality
+const certificates = [
+    { src: 'certificate/c1.jpg', number: 'Certificate 1' },
+    { src: 'certificate/c2.jpg', number: 'Certificate 2' },
+    { src: 'certificate/c3.jpg', number: 'Certificate 3' },
+    { src: 'certificate/c4.jpg', number: 'Certificate 4' },
+    { src: 'certificate/c5.jpg', number: 'Certificate 5' },
+    { src: 'certificate/c6.jpg', number: 'Certificate 6' },
+    { src: 'certificate/c7.jpg', number: 'Certificate 7' },
+    { src: 'certificate/c8.jpg', number: 'Certificate 8' },
+    { src: 'certificate/c9.jpg', number: 'Certificate 9' },
+    { src: 'certificate/c10.jpg', number: 'Certificate 10' },
+    { src: 'certificate/c11.jpg', number: 'Certificate 11' },
+    { src: 'certificate/c12.jpg', number: 'Certificate 12' },
+    { src: 'certificate/c13.jpg', number: 'Certificate 13' },
+    { src: 'certificate/c15.jpg', number: 'Certificate 14' },
+    { src: 'certificate/c14.jpg', number: 'Certificate 15' }
+];
+
+let currentImageIndex = 0;
+
+// Generate certificate cards
+document.addEventListener('DOMContentLoaded', function() {
+    const certificatesGrid = document.getElementById('certificatesGrid');
+    if (certificatesGrid) {
+        certificates.forEach((cert, index) => {
+            const card = document.createElement('div');
+            card.className = 'certificate-card';
+            card.setAttribute('data-index', index);
+            card.innerHTML = `
+                <div class="certificate-image-wrapper">
+                    <img src="${cert.src}" alt="${cert.number}" loading="lazy">
+                </div>
+                <div class="certificate-info">
+                    <div class="certificate-number">${cert.number}</div>
+                    <div class="certificate-view-text">
+                        <i class="fas fa-expand"></i>
+                        <span>Click to view full size</span>
+                    </div>
+                </div>
+            `;
+            card.addEventListener('click', () => openLightbox(index));
+            certificatesGrid.appendChild(card);
+        });
     }
+});
 
-    function closeModal() {
-        modal.classList.remove('open');
-        modal.setAttribute('aria-hidden', 'true');
+// Lightbox functionality
+const lightboxModal = document.getElementById('lightboxModal');
+const lightboxImage = document.getElementById('lightboxImage');
+const lightboxClose = document.getElementById('lightboxClose');
+const lightboxPrev = document.getElementById('lightboxPrev');
+const lightboxNext = document.getElementById('lightboxNext');
+const lightboxCounter = document.getElementById('lightboxCounter');
+
+function openLightbox(index) {
+    currentImageIndex = index;
+    updateLightboxImage();
+    if (lightboxModal) {
+        lightboxModal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+}
+
+function closeLightbox() {
+    if (lightboxModal) {
+        lightboxModal.classList.remove('active');
         document.body.style.overflow = '';
     }
+}
 
-    // Close handlers
-    if (closeBtn) closeBtn.addEventListener('click', closeModal);
-    if (okBtn) okBtn.addEventListener('click', closeModal);
-    if (backdrop) backdrop.addEventListener('click', closeModal);
+function updateLightboxImage() {
+    if (lightboxImage && lightboxCounter) {
+        lightboxImage.src = certificates[currentImageIndex].src;
+        lightboxImage.alt = certificates[currentImageIndex].number;
+        lightboxCounter.textContent = `${currentImageIndex + 1} / ${certificates.length}`;
+    }
+}
 
-    // Show immediately on each load
-    openModal();
+function showPrevImage() {
+    currentImageIndex = (currentImageIndex - 1 + certificates.length) % certificates.length;
+    updateLightboxImage();
+}
 
-    // Reopen every hour (3600000 ms)
-    const ONE_HOUR = 60 * 60 * 1000;
-    setInterval(() => {
-        const lastShown = Number(localStorage.getItem('maintenanceModalLastShown')) || 0;
-        if (Date.now() - lastShown >= ONE_HOUR) {
-            openModal();
+function showNextImage() {
+    currentImageIndex = (currentImageIndex + 1) % certificates.length;
+    updateLightboxImage();
+}
+
+// Lightbox event listeners
+document.addEventListener('DOMContentLoaded', function() {
+    if (lightboxClose) lightboxClose.addEventListener('click', closeLightbox);
+    if (lightboxPrev) lightboxPrev.addEventListener('click', showPrevImage);
+    if (lightboxNext) lightboxNext.addEventListener('click', showNextImage);
+
+    if (lightboxModal) {
+        lightboxModal.addEventListener('click', (e) => {
+            if (e.target === lightboxModal) {
+                closeLightbox();
+            }
+        });
+    }
+
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+        if (!lightboxModal || !lightboxModal.classList.contains('active')) return;
+        
+        if (e.key === 'Escape') {
+            closeLightbox();
+        } else if (e.key === 'ArrowLeft') {
+            showPrevImage();
+        } else if (e.key === 'ArrowRight') {
+            showNextImage();
         }
-    }, ONE_HOUR);
+    });
+});
+
+// Resume download functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const downloadBtn = document.getElementById('downloadResumeBtn');
+    
+    if (downloadBtn && typeof JSZip !== 'undefined') {
+        downloadBtn.addEventListener('click', async function() {
+            try {
+                const originalText = downloadBtn.innerHTML;
+                downloadBtn.disabled = true;
+                downloadBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Preparing Download...';
+                
+                const zip = new JSZip();
+                
+                const [resumeResponse, profsumResponse] = await Promise.all([
+                    fetch('logo_resource/resume.jpg'),
+                    fetch('logo_resource/profsum.jpg')
+                ]);
+                
+                const resumeBlob = await resumeResponse.blob();
+                const profsumBlob = await profsumResponse.blob();
+                
+                zip.file('Justine_Cedrick_R_Ambal_Resume.jpg', resumeBlob);
+                zip.file('Justine_Cedrick_R_Ambal_Professional_Summary.jpg', profsumBlob);
+                
+                const zipBlob = await zip.generateAsync({ type: 'blob' });
+                
+                const link = document.createElement('a');
+                link.href = URL.createObjectURL(zipBlob);
+                link.download = 'Justine_Cedrick_R_Ambal_Resume_Package.zip';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+                
+                URL.revokeObjectURL(link.href);
+                
+                downloadBtn.disabled = false;
+                downloadBtn.innerHTML = originalText;
+            } catch (error) {
+                console.error('Error creating zip file:', error);
+                alert('Error downloading resume. Please try again.');
+                downloadBtn.disabled = false;
+                downloadBtn.innerHTML = '<i class="fas fa-download"></i> Download Resume';
+            }
+        });
+    }
+
+    // Resume flip functionality
+    const flipContainer = document.getElementById('resumeFlipContainer');
+    if (flipContainer) {
+        let clickCount = 0;
+        let clickTimer = null;
+
+        flipContainer.addEventListener('click', function() {
+            clickCount++;
+            
+            if (clickCount === 1) {
+                clickTimer = setTimeout(function() {
+                    clickCount = 0;
+                }, 300);
+            } else if (clickCount === 2) {
+                clearTimeout(clickTimer);
+                clickCount = 0;
+                flipContainer.classList.toggle('flipped');
+            }
+        });
+    }
+});
+
+// Projects mobile interaction
+document.addEventListener('DOMContentLoaded', function () {
+    const isTouchDevice = window.matchMedia('(hover: none)').matches;
+    if (!isTouchDevice) return;
+
+    const featuredCards = Array.from(document.querySelectorAll('.projects-grid .project-card'));
+    const otherCards = Array.from(document.querySelectorAll('.other-projects-grid .other-project-card'));
+
+    function resetCards(cards, shouldResumeOrbit = false) {
+        cards.forEach(card => {
+            card.classList.remove('mobile-flipped');
+            if (shouldResumeOrbit) {
+                card.style.animationPlayState = '';
+            }
+        });
+    }
+
+    function setupCardInteractions(cards, { orbiting = false } = {}) {
+        cards.forEach(card => {
+            card.addEventListener('click', function (event) {
+                if (!window.matchMedia('(hover: none)').matches) return;
+                if (event.target.closest('a')) return;
+
+                const alreadyFlipped = card.classList.contains('mobile-flipped');
+
+                resetCards(cards, orbiting);
+
+                if (!alreadyFlipped) {
+                    card.classList.add('mobile-flipped');
+                    if (orbiting) {
+                        card.style.animationPlayState = 'paused';
+                    }
+                }
+            });
+        });
+    }
+
+    setupCardInteractions(featuredCards, { orbiting: true });
+    setupCardInteractions(otherCards, { orbiting: false });
+
+    document.addEventListener('click', function (event) {
+        if (!window.matchMedia('(hover: none)').matches) return;
+        if (event.target.closest('.project-card, .other-project-card')) return;
+        resetCards(featuredCards, true);
+        resetCards(otherCards, false);
+    });
+});
+
+// Active navigation state based on scroll position
+document.addEventListener('DOMContentLoaded', function() {
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-menu a');
+
+    function updateActiveNav() {
+        let current = '';
+        const scrollY = window.pageYOffset;
+
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop - 100;
+            const sectionHeight = section.clientHeight;
+            if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
+                current = section.getAttribute('id');
+            }
+        });
+
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            const href = link.getAttribute('href');
+            
+            // Handle combined sections
+            if (href === '#about' && (current === 'about' || current === 'contact')) {
+                link.classList.add('active');
+            } else if (href === '#skills' && (current === 'skills' || current === 'projects')) {
+                link.classList.add('active');
+            } else if (href === '#' + current) {
+                link.classList.add('active');
+            }
+        });
+    }
+
+    window.addEventListener('scroll', updateActiveNav);
+    updateActiveNav();
+});
+
+// Smooth scroll for anchor links
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            const href = this.getAttribute('href');
+            if (href === '#') return;
+            
+            e.preventDefault();
+            const target = document.querySelector(href);
+            if (target) {
+                const offsetTop = target.offsetTop - 20;
+                window.scrollTo({
+                    top: offsetTop,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+});
+
+// Sidebar text slide animation
+document.addEventListener('DOMContentLoaded', function() {
+    const sidebarNav = document.getElementById('sidebarNav');
+    const navLinks = document.querySelectorAll('.nav-menu a');
+    
+    if (!sidebarNav || navLinks.length === 0) return;
+    
+    let hideTimeout = null;
+    let isHovering = false;
+    
+    // Wrap each letter in spans for individual animation
+    function wrapLettersInSpans() {
+        navLinks.forEach(link => {
+            if (link.querySelector('.nav-text')) return; // Already wrapped
+            
+            const text = link.textContent.trim();
+            link.textContent = '';
+            link.innerHTML = '';
+            
+            // Add text container
+            const textContainer = document.createElement('span');
+            textContainer.className = 'nav-text';
+            textContainer.style.cssText = 'display: inline-block; padding-left: 12px; pointer-events: none;';
+            
+            // Wrap each letter
+            for (let i = 0; i < text.length; i++) {
+                const span = document.createElement('span');
+                span.className = 'nav-letter';
+                span.textContent = text[i];
+                span.style.cssText = 'display: inline-block; transition: transform 0.3s ease, opacity 0.3s ease; pointer-events: none;';
+                textContainer.appendChild(span);
+            }
+            
+            link.appendChild(textContainer);
+        });
+    }
+    
+    // Hide text - slide right to left, letters disappear one by one
+    function hideText() {
+        if (isHovering) return;
+        
+        navLinks.forEach(link => {
+            // Don't hide if this link is active
+            if (link.classList.contains('active')) return;
+            
+            const letters = link.querySelectorAll('.nav-letter');
+            const totalLetters = letters.length;
+            
+            letters.forEach((letter, index) => {
+                setTimeout(() => {
+                    letter.style.transform = 'translateX(-100%)';
+                    letter.style.opacity = '0';
+                }, (totalLetters - index - 1) * 30); // Start from right, disappear as they reach diamond
+            });
+        });
+    }
+    
+    // Show text - slide left to right, letters appear one by one
+    function showText() {
+        navLinks.forEach(link => {
+            const letters = link.querySelectorAll('.nav-letter');
+            
+            // Remove hiding class to expand background
+            link.classList.remove('hiding');
+            
+            letters.forEach((letter, index) => {
+                letter.style.transform = 'translateX(0)';
+                letter.style.opacity = '1';
+                letter.style.transitionDelay = `${index * 30}ms`;
+            });
+        });
+        
+        // Reset transition delay after animation
+        setTimeout(() => {
+            navLinks.forEach(link => {
+                const letters = link.querySelectorAll('.nav-letter');
+                letters.forEach(letter => {
+                    letter.style.transitionDelay = '0ms';
+                });
+            });
+        }, 500);
+    }
+    
+    // Ensure active link text is always visible
+    function ensureActiveTextVisible() {
+        navLinks.forEach(link => {
+            if (link.classList.contains('active')) {
+                const letters = link.querySelectorAll('.nav-letter');
+                if (letters.length > 0) {
+                    link.classList.remove('hiding');
+                    letters.forEach(letter => {
+                        if (letter) {
+                            letter.style.transform = 'translateX(0)';
+                            letter.style.opacity = '1';
+                        }
+                    });
+                }
+            }
+        });
+    }
+    
+    // Initialize - wrap letters in spans
+    wrapLettersInSpans();
+    
+    // Handle mouse leave - start 2 second timer
+    sidebarNav.addEventListener('mouseleave', function() {
+        isHovering = false;
+        
+        if (hideTimeout) {
+            clearTimeout(hideTimeout);
+        }
+        
+        hideTimeout = setTimeout(() => {
+            hideText();
+        }, 2000);
+    });
+    
+    // Handle mouse enter - show text immediately
+    sidebarNav.addEventListener('mouseenter', function() {
+        isHovering = true;
+        
+        if (hideTimeout) {
+            clearTimeout(hideTimeout);
+            hideTimeout = null;
+        }
+        
+        showText();
+    });
+    
+    // Watch for active state changes and ensure active text stays visible
+    let scrollTimeout = null;
+    const observer = new MutationObserver(function(mutations) {
+        // Only update if class actually changed to/from active
+        mutations.forEach(mutation => {
+            if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
+                const target = mutation.target;
+                if (target.classList.contains('active') || mutation.oldValue && mutation.oldValue.includes('active')) {
+                    ensureActiveTextVisible();
+                }
+            }
+        });
+    });
+    
+    navLinks.forEach(link => {
+        observer.observe(link, {
+            attributes: true,
+            attributeFilter: ['class'],
+            attributeOldValue: true
+        });
+    });
+    
+    // Also check on scroll to ensure active text is visible (throttled)
+    window.addEventListener('scroll', function() {
+        if (scrollTimeout) {
+            clearTimeout(scrollTimeout);
+        }
+        scrollTimeout = setTimeout(() => {
+            ensureActiveTextVisible();
+        }, 100);
+    });
+    
+    // Initial check (delayed to ensure DOM is ready)
+    setTimeout(() => {
+        ensureActiveTextVisible();
+    }, 100);
 });

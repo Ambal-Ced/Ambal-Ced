@@ -10,31 +10,28 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="logo" id="logo">
-            <div class="logo-container">
-                <span class="logo-text" id="logoText">JustineA</span>
-                <span class="logo-dot">.</span>
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar-nav" id="sidebarNav">
+        <div class="sidebar-logo">
+            <div class="logo" id="logo">
+                <div class="logo-container">
+                    <span class="logo-text" id="logoText">JustineA</span>
+                    <span class="logo-dot">.</span>
+                </div>
             </div>
         </div>
-        <ul class="nav-links">
-            <li><a href="index.html" class="active">Home</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="projects.html">Projects</a></li>
-            <li><a href="experience.html">Experience</a></li>
-            <li><a href="skills.html">Skills</a></li>
-            <li><a href="faq.html">FAQ</a></li>
-            <li><a href="contact.html">Contact</a></li>
-            <li><a href="resume.html" class="resume-btn">Resume</a></li>
+        <ul class="nav-menu">
+            <li><a href="#home" class="active">Home</a></li>
+            <li><a href="#about">About & Contact</a></li>
+            <li><a href="#skills">Skills & Projects</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#credentials">Credentials</a></li>
+            <li><a href="#resume">Resume</a></li>
         </ul>
-        <div class="hamburger">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-    </nav>
+    </aside>
 
+    <!-- Main Content -->
+    <div class="main-content-wrapper">
     <!-- Home Section -->
     <section id="home" class="section">
         <div class="container">
@@ -63,8 +60,8 @@
                     <p>I'm IT Major In Business Analytics With Exceptional Skills in Software Development</p>
                     <p>I Am Proficient In C# Programming And Willing To Learn More Programming Language.</p>
                     <div class="cta-buttons">
-                        <a href="resume.html" class="btn primary-btn">View My Resume/CV</a>
-                        <a href="contact.html" class="btn secondary-btn">Contact Me</a>
+                        <a href="#resume" class="btn primary-btn">View My Resume/CV</a>
+                        <a href="#contact" class="btn secondary-btn">Contact Me</a>
                     </div>
                 </div>
             </div>
@@ -75,26 +72,608 @@
     <section id="quick-links" class="section">
         <div class="container">
             <div class="quick-links-grid">
-                <a href="about.html" class="quick-link-card">
+                <a href="#about" class="quick-link-card">
                     <i class="fas fa-user"></i>
-                    <h3>About Me</h3>
-                    <p>Learn more about my journey in IT and Business Analytics</p>
+                    <h3>About & Contact</h3>
+                    <p>Learn more about my journey and get in touch</p>
                 </a>
-                <a href="projects.html" class="quick-link-card">
+                <a href="#skills" class="quick-link-card">
                     <i class="fas fa-code"></i>
-                    <h3>Projects</h3>
-                    <p>Check out my software development projects</p>
+                    <h3>Skills & Projects</h3>
+                    <p>Check out my skills and software development projects</p>
                 </a>
-                <a href="experience.html" class="quick-link-card">
+                <a href="#experience" class="quick-link-card">
                     <i class="fas fa-briefcase"></i>
                     <h3>Experience</h3>
                     <p>My professional journey and achievements</p>
                 </a>
-                <a href="skills.html" class="quick-link-card">
-                    <i class="fas fa-tools"></i>
-                    <h3>Skills</h3>
-                    <p>C# and other programming languages I work with</p>
-                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section">
+        <div class="container">
+            <h1 class="page-title">About <span class="highlight">Me</span></h1>
+            <div class="hero-content-about">
+                <div class="left-section">
+                    <div class="hero-image">
+                        <img src="placeholder.jpg" alt="Profile Image">
+                    </div>
+                </div>
+                <div class="right-section">
+                    <div class="context-me">
+                        <p>&nbsp;&nbsp;&nbsp;&nbsp;Hi! Im <strong>Justine Cedrick R. Ambal</strong> A Passionate BSIT Student Who Is About To Become A Data Analyst And/Or a Software Developer. Mastering The C# and .Net Is A Hobby And Learning New Things Is An Opportunity. Willing To Learn New Things That Can Help A Company When It Comes To Technical Problem</p>
+                        
+                        <p>&nbsp;&nbsp;&nbsp;&nbsp;I Studied On Batangas State Univesity Lipa Campus A National Engineering University. I Live In Lepute, San Jose, Batangas, Philippines. I Started My Programming Career Way Back on 2022 Where C# Is The First Programming I Saw While C/C++ is my First Programming Language. The Tool I Used on Learning C/C++ is TurboC++ Thought To Us By Sir Jonel From Torres Tech.</p>
+                        
+                        <p>&nbsp;&nbsp;&nbsp;&nbsp;Currently I Am Creating A C# Project And A DotNet Website Which I Do To Increase My Familliarity With The Structure Of How The Code Process. I Also Do Some Data Analyzation On Some Public Data Given For Free By The Government Such As Electricity Produce By Power Generator On Philippines, Health Related Data, And More.</p>
+                        
+                        <p>&nbsp;&nbsp;&nbsp;&nbsp;I Believe In AI Wont Take Over Us But Instead It Will Lessen Complex Work Instead. And Also I Love How Garry KilDall Said His Philosophy "I Don't Comment On The Code Itself Because I Feel That Properly Written Code Is Very Much Self-Documented" Which Really Apply To How I See My Code As I Prefer To Search Solution On YouTube And StackOverFlow Than Ai.</p>
+                    </div>
+                    <div class="cta-buttons">
+                        <a href="#resume" class="btn primary-btn">View My Resume/CV</a>
+                        <a href="#contact" class="btn secondary-btn">Contact Me</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section">
+        <div class="container">
+            <h1 class="page-title">Get In <span class="highlight">Touch</span></h1>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>Contact Information</h3>
+                    <p class="contact-intro">Feel free to reach out to me for collaboration opportunities, project inquiries, or just to connect. I'm always open to discussing new ideas and opportunities.</p>
+                    <div class="contact-items">
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h4>Email</h4>
+                                <a href="mailto:justineambal3254@gmail.com">justineambal3254@gmail.com</a>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fab fa-linkedin"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h4>LinkedIn</h4>
+                                <a href="https://www.linkedin.com/in/ambal-ced3604/" target="_blank">linkedin.com/in/ambal-ced3604</a>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fab fa-github"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h4>GitHub</h4>
+                                <a href="https://github.com/Ambal-Ced" target="_blank">github.com/Ambal-Ced</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <form class="contact-form">
+                    <h3>Send Me a Message</h3>
+                    <div class="form-group">
+                        <input type="text" placeholder="Your Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" placeholder="Your Email" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" placeholder="Subject" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea placeholder="Your Message" rows="6" required></textarea>
+                    </div>
+                    <button type="submit" class="btn primary-btn">
+                        <i class="fas fa-paper-plane"></i> Send Message
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="section">
+        <div class="container">
+            <h1 class="page-title">My <span class="highlight">Skills</span></h1>
+            <div class="hero-content-about">
+                <div class="left-section">
+                    <div class="hero-image">
+                        <img src="placeholder.jpg" alt="Skills Image">
+                    </div>
+                </div>
+                <div class="right-section">
+                    <div class="skills-grid">
+                        <div class="skill-category">
+                            <h3><i class="fas fa-chart-line"></i> Business Analytics & Data Science</h3>
+                            <p>Data Analysis (Decision Trees, K-Means Clustering, Apriori Algorithm, Association Rule Mining), Power BI Desktop (DAX, Power Query, Dashboards), Microsoft Excel (Advanced Formulas, Pivot Tables, Data Modeling), Fundamentals of Statistics, Data Visualization & Report Automation</p>
+                        </div>
+                        <div class="skill-category">
+                            <h3><i class="fas fa-code"></i> Programming & Software Development</h3>
+                            <p>C#, C++, .NET Framework, ASP.NET, MVC Architecture, JavaScript, HTML5, CSS3, SQL, PHP, Logical Thinking & Algorithmic Design</p>
+                        </div>
+                        <div class="skill-category">
+                            <h3><i class="fas fa-shield-alt"></i> Cybersecurity & Operating Systems</h3>
+                            <p>Cybersecurity Essentials, System Security, Vulnerability Identification, Network Protocols, Digital Forensics, Desktop Formatting, Server Basics (Installation, Configuration, Troubleshooting)</p>
+                        </div>
+                        <div class="skill-category">
+                            <h3><i class="fas fa-tools"></i> Tools & Technologies</h3>
+                            <p>Git/GitHub, Visual Studio, VS Code, SQL Server, Power BI Desktop, Microsoft Excel, Strong Problem-Solving & Debugging Skills</p>
+                        </div>
+                        <div class="skill-category">
+                            <h3><i class="fas fa-certificate"></i> Certifications</h3>
+                            <p>C# Logic Code (Microsoft, FreeCodeCamp), MVC & ASP.NET (Simplilearn), C++ Programming (Simplilearn), Cybersecurity & Operating Systems (Cisco), Data Analytics (TechVoc, OneCodeCamp), Business Intelligence with Power BI (DSA), BITCON Certification, Leadership Skills (DICT), Fundamentals of Statistics using Excel (DSA)</p>
+                        </div>
+                        <div class="skill-category">
+                            <h3><i class="fas fa-users"></i> Leadership & Communication</h3>
+                            <p>Team Collaboration, Cross-Functional Management, Interpersonal Skills, Communication, Leadership Certification (DICT)</p>
+                        </div>
+                    </div>
+                    
+                    <div class="context-me">
+                        <p>&nbsp;&nbsp;&nbsp;&nbsp;I am a motivated and detail-oriented BS in Information Technology student majoring in Business Analytics with a strong foundation in data-driven decision-making, programming, and IT systems. My expertise is backed by multiple industry-recognized certifications from organizations including Microsoft, Cisco, FreeCodeCamp, Simplilearn, DICT, and others, spanning a wide spectrum of technologies, programming languages, and data analysis tools.</p>
+                        
+                        <p>&nbsp;&nbsp;&nbsp;&nbsp;I am technically adept and analytically driven with a strong foundation in Business Analytics, Software Development, and Information Technology Infrastructure. I excel at analyzing complex data sets, developing software solutions, and applying security best practices. My skills include proficiency in data analysis techniques such as Decision Trees, K-Means Clustering, Apriori Algorithm, and Association Rule Mining, along with expertise in building dynamic, scalable, and secure web applications using C#, ASP.NET, and MVC architecture.</p>
+                        
+                        <p>&nbsp;&nbsp;&nbsp;&nbsp;I am eager to contribute to a dynamic IT team and grow as a technology professional in a fast-paced, results-oriented environment. My certifications in Data Analytics, C#, Cybersecurity, and Leadership, combined with practical experience in Business Intelligence using Power BI, demonstrate my commitment to continuous learning and professional development.</p>
+                    </div>
+                    
+                    <div class="cta-buttons">
+                        <a href="#resume" class="btn primary-btn">View My Resume/CV</a>
+                        <a href="#contact" class="btn secondary-btn">Contact Me</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section">
+        <h1 class="page-title">My <span class="highlight">Projects</span></h1>
+        <h2 class="section-subtitle">Featured Projects</h2>
+        <div class="projects-grid">
+            <div class="project-card">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <div class="project-image">
+                            <img src="logo_resource/eventtria.webp" alt="EventTria">
+                        </div>
+                        <div class="project-content">
+                            <h3>EventTria</h3>
+                            <div class="project-tech">
+                                <span class="tech-tag">Next.js</span>
+                                <span class="tech-tag">ShadcnUI</span>
+                                <span class="tech-tag">Supabase</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-back">
+                        <div class="project-content">
+                            <p>A comprehensive event management system for organizing and managing events.</p>
+                            <div class="project-links">
+                                <a href="https://github.com/Ambal-Ced/EventTria" target="_blank" class="view-project">View Project</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <div class="project-image">
+                            <img src="logo_resource/appcon.webp" alt="EcoTrack Admin">
+                        </div>
+                        <div class="project-content">
+                            <h3>Quazar Quiz</h3>
+                            <div class="project-tech">
+                                <span class="tech-tag">Flutter</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-back">
+                        <div class="project-content">
+                            <p>A software that allows users to test their knowledge in a quiz format.</p>
+                            <div class="project-links">
+                                <a href="https://quazarcloud.online/download/appcon.html" target="_blank" class="view-project">View Project</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <div class="project-image">
+                            <img src="logo_resource/Ecologo.png" alt="EcoTrack User">
+                        </div>
+                        <div class="project-content">
+                            <h3>EcoTrack</h3>
+                            <div class="project-tech">
+                                <span class="tech-tag">C#</span>
+                                <span class="tech-tag">ASP.NET</span>
+                                <span class="tech-tag">SQL Server</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-back">
+                        <div class="project-content">
+                            <p>User application for data tracking and monitoring consumption.</p>
+                            <div class="project-links">
+                                <a href="https://github.com/Ambal-Ced/ecos" target="_blank" class="view-project">View Project</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <div class="project-image">
+                            <img src="logo_resource/quazarcloud.png" alt="Studio Ponkan Admin">
+                        </div>
+                        <div class="project-content">
+                            <h3>Quazar Cloud</h3>
+                            <div class="project-tech">
+                                <span class="tech-tag">HTML</span>
+                                <span class="tech-tag">CSS</span>
+                                <span class="tech-tag">JavaScript</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-back">
+                        <div class="project-content">
+                            <p>Personal website containing quick links for my project and stuffs.</p>
+                            <div class="project-links">
+                                <a href="https://quazarcloud.online" target="_blank" class="view-project">View Project</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <div class="project-image">
+                            <img src="logo_resource/stdui.png" alt="Studio Ponkan Client">
+                        </div>
+                        <div class="project-content">
+                            <h3>Studio Ponkan </h3>
+                            <div class="project-tech">
+                                <span class="tech-tag">PHP</span>
+                                <span class="tech-tag">SQL Server</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-back">
+                        <div class="project-content">
+                            <p>Client-side application for studio booking and management.</p>
+                            <div class="project-links">
+                                <a href="https://github.com/Ambal-Ced/ADBMSFINAL-App" target="_blank" class="view-project">View Project</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <h2 class="section-subtitle">Other Projects</h2>
+        <div class="other-projects-grid">
+            <div class="other-project-card">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <div class="project-image">
+                            <img src="logo_resource/githublogo.jpg" alt="Project 1">
+                        </div>
+                        <div class="project-content">
+                            <h3>Project FEDM JAVA GUI</h3>
+                            <div class="project-tech">
+                                <span class="tech-tag">JAVA</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-back">
+                        <div class="project-content">
+                            <p>A collaborative project between me and my group mates on JAVA GUI projects.</p>
+                            <div class="project-links">
+                                <a href="https://github.com/jrazec/fedm" target="_blank" class="view-project">View Project</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="other-project-card">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <div class="project-image">
+                            <img src="logo_resource/jup.webp" alt="Project 2">
+                        </div>
+                        <div class="project-content">
+                            <h3>DPH06A</h3>
+                            <div class="project-tech">
+                                <span class="tech-tag">IPYNB</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-back">
+                        <div class="project-content">
+                            <p>Python Notebooks for Data Analysis.</p>
+                            <div class="project-links">
+                                <a href="https://github.com/Ambal-Ced/DPH06A-Ambal" target="_blank" class="view-project">View Project</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="other-project-card">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <div class="project-image">
+                            <img src="logo_resource/Ecologo.png" alt="Project 3">
+                        </div>
+                        <div class="project-content">
+                            <h3>EcoTrack Admin</h3>
+                            <div class="project-tech">
+                                <span class="tech-tag">C#</span>
+                                <span class="tech-tag">ASP.NET</span>
+                                <span class="tech-tag">SQL</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-back">
+                        <div class="project-content">
+                            <p>Admin application for EcoTrack.</p>
+                            <div class="project-links">
+                                <a href="https://github.com/Ambal-Ced/EcoTrack_Admin_Final" target="_blank" class="view-project">View Project</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="other-project-card">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <div class="project-image">
+                            <img src="logo_resource/githublogo.jpg" alt="Project 4">
+                        </div>
+                        <div class="project-content">
+                            <h3>Free code camp survey form activity</h3>
+                            <div class="project-tech">
+                                <span class="tech-tag">HTML</span>
+                                <span class="tech-tag">CSS</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-back">
+                        <div class="project-content">
+                            <p>A guided activity making a survey form for free code camp.</p>
+                            <div class="project-links">
+                                <a href="https://github.com/Ambal-Ced/survey-form-ex" target="_blank" class="view-project">View Project</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="other-project-card">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <div class="project-image">
+                            <img src="logo_resource/githublogo.jpg" alt="Project 5">
+                        </div>
+                        <div class="project-content">
+                            <h3>C# GUI Calculator</h3>
+                            <div class="project-tech">
+                                <span class="tech-tag">C#</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-back">
+                        <div class="project-content">
+                            <p>A C# GUI Calculator project.</p>
+                            <div class="project-links">
+                                <a href="https://github.com/Ambal-Ced/Csharp-Calculator-GUI" target="_blank" class="view-project">View Project</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="other-project-card">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <div class="project-image">
+                            <img src="logo_resource/githublogo.jpg" alt="Project 6">
+                        </div>
+                        <div class="project-content">
+                            <h3>C# Logical Calculator Terminal</h3>
+                            <div class="project-tech">
+                                <span class="tech-tag">C#</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-back">
+                        <div class="project-content">
+                            <p>A calculator made with C# in a terminal.</p>
+                            <div class="project-links">
+                                <a href="https://github.com/Ambal-Ced/Csharp-Calculator-logical" target="_blank" class="view-project">View Project</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="other-project-card">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <div class="project-image">
+                            <img src="logo_resource/githublogo.jpg" alt="Project 7">
+                        </div>
+                        <div class="project-content">
+                            <h3>ES project</h3>
+                            <div class="project-tech">
+                                <span class="tech-tag">HTML</span>
+                                <span class="tech-tag">CSS</span>
+                                <span class="tech-tag">JS</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-back">
+                        <div class="project-content">
+                            <p>A collaborative project between me and my group mates on a website project.</p>
+                            <div class="project-links">
+                                <a href="https://github.com/Ambal-Ced/ES-Website" target="_blank" class="view-project">View Project</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="other-project-card">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <div class="project-image">
+                            <img src="logo_resource/githublogo.jpg" alt="Project 8">
+                        </div>
+                        <div class="project-content">
+                            <h3>System Violation Recorder</h3>
+                            <div class="project-tech">
+                                <span class="tech-tag">JAVA</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-back">
+                        <div class="project-content">
+                            <p>OOP project using JAVA</p>
+                            <div class="project-links">
+                                <a href="https://github.com/Ambal-Ced/OOP-java-system-violation-recorder" target="_blank" class="view-project">View Project</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="other-project-card">
+                <div class="card-inner">
+                    <div class="card-front">
+                        <div class="project-image">
+                            <img src="logo_resource/githublogo.jpg" alt="Coming Soon">
+                        </div>
+                        <div class="project-content">
+                            <h3>More Projects Coming Soon</h3>
+                            <div class="project-tech">
+                                <span class="tech-tag">Stay Tuned</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-back">
+                        <div class="project-content">
+                            <p>I'm constantly working on new projects. Check back soon for updates!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="section">
+        <div class="container">
+            <h1 class="page-title">My <span class="highlight">Experience</span></h1>
+            <div class="experience-timeline">
+                <div class="experience-item">
+                    <div class="experience-logo">
+                        <img src="logo_resource/outlier.webp" alt="Outlier.ai">
+                    </div>
+                    <div class="experience-content">
+                        <h3>Math AI Trainer</h3>
+                        <h4>Outlier.ai</h4>
+                        <p class="experience-date">Freelance</p>
+                        <p class="experience-description">Working as a freelance Math AI Trainer, contributing to the development and training of advanced generative AI systems. Responsible for creating and refining mathematical training data to improve AI model performance and accuracy.</p>
+                    </div>
+                </div>
+                <div class="experience-item">
+                    <div class="experience-logo">
+                        <img src="logo_resource/torres.jpg" alt="Torres Tech Corporation">
+                    </div>
+                    <div class="experience-content">
+                        <h3>Work Immersion - Programming</h3>
+                        <h4>Torres Tech Corporation</h4>
+                        <p class="experience-date">Work Immersion Program</p>
+                        <p class="experience-description">Completed work immersion program focused on learning C/C++ programming. Gained foundational knowledge in programming concepts, problem-solving techniques, and software development practices. Learned from experienced instructors including Sir Jonel, who taught using TurboC++ as the primary development tool.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certificates Section -->
+    <section id="credentials" class="section certificates-section">
+        <div class="certificates-container">
+            <h1 class="page-title">My <span class="highlight">Certificates</span></h1>
+            <p style="text-align: center; color: var(--text-color-light); font-size: 1.1rem; margin-top: 1rem; max-width: 700px; margin-left: auto; margin-right: auto;">
+                A collection of my professional certifications and achievements that demonstrate my commitment to continuous learning and professional development.
+            </p>
+            
+            <div class="certificates-grid" id="certificatesGrid">
+                <!-- Certificates will be dynamically inserted here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Lightbox Modal -->
+    <div class="lightbox-modal" id="lightboxModal">
+        <div class="lightbox-content">
+            <span class="lightbox-close" id="lightboxClose">&times;</span>
+            <button class="lightbox-nav lightbox-prev" id="lightboxPrev">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <img class="lightbox-image" id="lightboxImage" src="" alt="Certificate">
+            <button class="lightbox-nav lightbox-next" id="lightboxNext">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+            <div class="lightbox-counter" id="lightboxCounter"></div>
+        </div>
+    </div>
+
+    <!-- Resume Section -->
+    <section id="resume" class="section">
+        <div class="container">
+            <h1 class="page-title">My <span class="highlight">Resume</span></h1>
+            <div class="resume-container">
+                <div class="resume-image-container">
+                    <div class="resume-flip-container" id="resumeFlipContainer">
+                        <div class="resume-flip-inner">
+                            <div class="resume-flip-front">
+                                <img src="logo_resource/resume.jpg" alt="Justine Cedrick R. Ambal Resume" class="resume-image-display" id="resumeImage">
+                            </div>
+                            <div class="resume-flip-back">
+                                <img src="logo_resource/profsum.jpg" alt="Justine Cedrick R. Ambal Professional Summary" class="resume-image-display" id="profsumImage">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="resume-actions">
+                    <button class="btn primary-btn" id="downloadResumeBtn">
+                        <i class="fas fa-download"></i> Download Resume
+                    </button>
+                    <a href="#contact" class="btn secondary-btn">
+                        <i class="fas fa-envelope"></i> Contact Me
+                    </a>
+                </div>
             </div>
         </div>
     </section>
@@ -114,9 +693,7 @@
     <footer>
         <div class="container">
             <div class="footer-content">
-                <div class="footer-left">
-                    <p>&copy; 2024 Justine Cedrick R. Ambal. All rights reserved.</p>
-                </div>
+                <p>&copy; 2024 Justine Cedrick R. Ambal. All rights reserved.</p>
                 <div class="footer-right">
                     <a href="mailto:justineambal3254@gmail.com">justineambal3254@gmail.com</a>
                 </div>
@@ -124,19 +701,10 @@
         </div>
     </footer>
 
-    <!-- Maintenance Modal -->
-    <div id="maintenance-modal" class="maintenance-modal" aria-hidden="true" role="dialog" aria-labelledby="maintenance-title" aria-modal="true">
-        <div class="maintenance-backdrop"></div>
-        <div class="maintenance-content" role="document">
-            <button class="maintenance-close" aria-label="Close">&times;</button>
-            <h2 id="maintenance-title">Portfolio Under Maintenance</h2>
-            <p>Currently on maintenance and development—anything you see is not the final product.</p>
-            <div class="maintenance-actions">
-                <button class="maintenance-ok btn primary-btn">OK</button>
-            </div>
-        </div>
     </div>
 
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
     <script src="script.js"></script>
 </body>
-</html> 
+</html>
