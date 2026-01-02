@@ -1593,6 +1593,18 @@ document.addEventListener('DOMContentLoaded', function () {
 document.addEventListener('DOMContentLoaded', function() {
     const sections = document.querySelectorAll('section[id]');
     const navLinks = document.querySelectorAll('.nav-menu a');
+    let sidebarIsHovering = false;
+
+    // Track sidebar hover state
+    const sidebarNav = document.getElementById('sidebarNav');
+    if (sidebarNav) {
+        sidebarNav.addEventListener('mouseenter', () => { sidebarIsHovering = true; });
+        sidebarNav.addEventListener('mouseleave', () => { sidebarIsHovering = false; });
+    }
+
+    function isTextHidden() {
+        return Array.from(navLinks).some(link => link.classList.contains('hiding'));
+    }
 
     function updateActiveNav() {
         let current = '';
@@ -1615,8 +1627,27 @@ document.addEventListener('DOMContentLoaded', function() {
                 link.classList.add('active');
             } else if (href === '#skills' && (current === 'skills' || current === 'projects')) {
                 link.classList.add('active');
-            } else if (href === '#' + current) {
+            } else if (href === '#home' && current === 'home') {
                 link.classList.add('active');
+            } else if (href === '#experience' && current === 'experience') {
+                link.classList.add('active');
+            } else if (href === '#credentials' && current === 'credentials') {
+                link.classList.add('active');
+            } else if (href === '#resume' && current === 'resume') {
+                link.classList.add('active');
+            }
+            
+            // If text is hidden and not hovering, keep the newly active link's text hidden
+            if (!sidebarIsHovering && isTextHidden() && link.classList.contains('active')) {
+                // Keep text hidden for newly active link
+                const letters = link.querySelectorAll('.nav-letter');
+                if (letters.length > 0) {
+                    letters.forEach(letter => {
+                        letter.style.transform = 'translateX(-100%)';
+                        letter.style.opacity = '0';
+                    });
+                    link.classList.add('hiding');
+                }
             }
         });
     }
@@ -1690,14 +1721,17 @@ document.addEventListener('DOMContentLoaded', function() {
             const letters = link.querySelectorAll('.nav-letter');
             const totalLetters = letters.length;
             
+            // Mark all links as hiding
+            link.classList.add('hiding');
+            
             // Calculate when to start shrinking background (when first letter starts disappearing)
             const totalDuration = totalLetters * 30;
             const shrinkStart = totalDuration * 0.3; // Start shrinking at 30% of animation
             
-            // Start shrinking background
+            // Start shrinking background for active link
             setTimeout(() => {
                 if (link.classList.contains('active')) {
-                    link.classList.add('hiding');
+                    // Background will shrink via CSS
                 }
             }, shrinkStart);
             
@@ -1735,6 +1769,44 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }, 500);
     }
+    
+    // Arc hover effect
+    function createArcEffect(hoveredIndex) {
+        const maxOffset = 60; // Maximum offset for the hovered item
+        const totalItems = navLinks.length;
+        
+        navLinks.forEach((link, index) => {
+            const distance = Math.abs(index - hoveredIndex);
+            
+            if (index === hoveredIndex) {
+                // Hovered item moves most to the right
+                link.style.transform = `translateX(${maxOffset}px)`;
+            } else {
+                // Calculate offset based on distance from hovered item
+                // Items closer to hovered move more, forming an arc
+                const offset = maxOffset * (1 - (distance / totalItems));
+                link.style.transform = `translateX(${offset}px)`;
+            }
+        });
+    }
+    
+    function resetArcEffect() {
+        navLinks.forEach(link => {
+            link.style.transform = 'translateX(0)';
+        });
+    }
+    
+    // Add hover event listeners to each link
+    navLinks.forEach((link, index) => {
+        link.addEventListener('mouseenter', function() {
+            createArcEffect(index);
+        });
+    });
+    
+    // Reset arc when leaving sidebar
+    sidebarNav.addEventListener('mouseleave', function() {
+        resetArcEffect();
+    });
     
     // Initialize - wrap letters in spans
     wrapLettersInSpans();

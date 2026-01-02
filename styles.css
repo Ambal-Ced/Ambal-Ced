@@ -85,19 +85,23 @@ body::after {
     height: 100vh;
     background: rgba(248, 250, 252, 0);
     backdrop-filter: blur(20px);
-    padding: 30px 20px;
+    padding: 20px 15px;
     z-index: 1000;
     overflow-y: auto;
 }
 
 .sidebar-logo {
-    margin-bottom: 10px;
+    margin-bottom: 15px;
     padding-bottom: 15px;
     cursor: pointer;
+    margin-left: 4px;
+    width: 100%;
+    min-width: 180px;
 }
 
 .sidebar-logo #logo {
     display: block;
+    width: 100%;
 }
 
 .sidebar-logo .logo-container {
@@ -106,6 +110,8 @@ body::after {
     padding: 10px;
     margin: -10px;
     pointer-events: auto;
+    min-width: 160px;
+    width: auto;
 }
 
 .sidebar-logo #logoText {
@@ -168,7 +174,7 @@ body::after {
 }
 
 .nav-menu li {
-    margin-bottom: 4px;
+    margin-bottom: 6px;
 }
 
 .nav-menu a {
@@ -210,12 +216,28 @@ body::after {
 .nav-menu a:hover {
     color: var(--text-color);
     background: rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease;
 }
 
 .nav-menu a:hover::before {
     background: var(--text-color);
     width: 8px;
     height: 8px;
+}
+
+.nav-menu a::after {
+    content: '';
+    position: absolute;
+    bottom: 4px;
+    left: 24px;
+    width: 0;
+    height: 2px;
+    background: var(--primary-color);
+    transition: width 0.4s ease;
+}
+
+.nav-menu a:hover::after {
+    width: calc(100% - 24px);
 }
 
 .nav-menu a.active {
@@ -1135,9 +1157,10 @@ footer {
     background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(20px) saturate(180%);
     -webkit-backdrop-filter: blur(20px) saturate(180%);
-    padding: clamp(12px, 2vw, 16px) 0;
-    margin-top: clamp(10px, 1.5vw, 15px);
+    padding: clamp(20px, 3vw, 30px) 0;
+    margin-top: clamp(40px, 6vw, 60px);
     border-top: 1px solid rgba(0, 0, 0, 0.08);
+    width: 100%;
 }
 
 .footer-content {
@@ -1146,6 +1169,9 @@ footer {
     align-items: center;
     flex-wrap: wrap;
     gap: clamp(16px, 3vw, 24px);
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 clamp(8px, 2vw, 16px);
 }
 
 .footer-right a {
