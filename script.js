@@ -1667,14 +1667,14 @@ document.addEventListener('DOMContentLoaded', function() {
             // Add text container
             const textContainer = document.createElement('span');
             textContainer.className = 'nav-text';
-            textContainer.style.cssText = 'display: inline-block; padding-left: 12px; pointer-events: none;';
+            textContainer.style.cssText = 'display: inline-block; padding-left: 12px;';
             
             // Wrap each letter
             for (let i = 0; i < text.length; i++) {
                 const span = document.createElement('span');
                 span.className = 'nav-letter';
                 span.textContent = text[i];
-                span.style.cssText = 'display: inline-block; transition: transform 0.3s ease, opacity 0.3s ease; pointer-events: none;';
+                span.style.cssText = 'display: inline-block; transition: transform 0.3s ease, opacity 0.3s ease;';
                 textContainer.appendChild(span);
             }
             
@@ -1687,11 +1687,19 @@ document.addEventListener('DOMContentLoaded', function() {
         if (isHovering) return;
         
         navLinks.forEach(link => {
-            // Don't hide if this link is active
-            if (link.classList.contains('active')) return;
-            
             const letters = link.querySelectorAll('.nav-letter');
             const totalLetters = letters.length;
+            
+            // Calculate when to start shrinking background (when first letter starts disappearing)
+            const totalDuration = totalLetters * 30;
+            const shrinkStart = totalDuration * 0.3; // Start shrinking at 30% of animation
+            
+            // Start shrinking background
+            setTimeout(() => {
+                if (link.classList.contains('active')) {
+                    link.classList.add('hiding');
+                }
+            }, shrinkStart);
             
             letters.forEach((letter, index) => {
                 setTimeout(() => {
@@ -1728,24 +1736,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 500);
     }
     
-    // Ensure active link text is always visible
-    function ensureActiveTextVisible() {
-        navLinks.forEach(link => {
-            if (link.classList.contains('active')) {
-                const letters = link.querySelectorAll('.nav-letter');
-                if (letters.length > 0) {
-                    link.classList.remove('hiding');
-                    letters.forEach(letter => {
-                        if (letter) {
-                            letter.style.transform = 'translateX(0)';
-                            letter.style.opacity = '1';
-                        }
-                    });
-                }
-            }
-        });
-    }
-    
     // Initialize - wrap letters in spans
     wrapLettersInSpans();
     
@@ -1773,41 +1763,4 @@ document.addEventListener('DOMContentLoaded', function() {
         
         showText();
     });
-    
-    // Watch for active state changes and ensure active text stays visible
-    let scrollTimeout = null;
-    const observer = new MutationObserver(function(mutations) {
-        // Only update if class actually changed to/from active
-        mutations.forEach(mutation => {
-            if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
-                const target = mutation.target;
-                if (target.classList.contains('active') || mutation.oldValue && mutation.oldValue.includes('active')) {
-                    ensureActiveTextVisible();
-                }
-            }
-        });
-    });
-    
-    navLinks.forEach(link => {
-        observer.observe(link, {
-            attributes: true,
-            attributeFilter: ['class'],
-            attributeOldValue: true
-        });
-    });
-    
-    // Also check on scroll to ensure active text is visible (throttled)
-    window.addEventListener('scroll', function() {
-        if (scrollTimeout) {
-            clearTimeout(scrollTimeout);
-        }
-        scrollTimeout = setTimeout(() => {
-            ensureActiveTextVisible();
-        }, 100);
-    });
-    
-    // Initial check (delayed to ensure DOM is ready)
-    setTimeout(() => {
-        ensureActiveTextVisible();
-    }, 100);
 });
