@@ -1377,7 +1377,7 @@ const certificates = [
 
 let currentImageIndex = 0;
 
-// Generate certificate cards
+// Generate certificate cards with lazy loading
 document.addEventListener('DOMContentLoaded', function() {
     const certificatesGrid = document.getElementById('certificatesGrid');
     if (certificatesGrid) {
@@ -1387,7 +1387,7 @@ document.addEventListener('DOMContentLoaded', function() {
             card.setAttribute('data-index', index);
             card.innerHTML = `
                 <div class="certificate-image-wrapper">
-                    <img src="${cert.src}" alt="${cert.number}" loading="lazy">
+                    <img data-src="${cert.src}" alt="${cert.number}" loading="lazy" class="lazy-load">
                 </div>
                 <div class="certificate-info">
                     <div class="certificate-number">${cert.number}</div>
@@ -1400,6 +1400,31 @@ document.addEventListener('DOMContentLoaded', function() {
             card.addEventListener('click', () => openLightbox(index));
             certificatesGrid.appendChild(card);
         });
+
+        // Intersection Observer for lazy loading certificates
+        const lazyImages = certificatesGrid.querySelectorAll('img.lazy-load');
+        if ('IntersectionObserver' in window) {
+            const imageObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        img.src = img.dataset.src;
+                        img.classList.remove('lazy-load');
+                        imageObserver.unobserve(img);
+                    }
+                });
+            }, {
+                rootMargin: '50px'
+            });
+
+            lazyImages.forEach(img => imageObserver.observe(img));
+        } else {
+            // Fallback for browsers without IntersectionObserver
+            lazyImages.forEach(img => {
+                img.src = img.dataset.src;
+                img.classList.remove('lazy-load');
+            });
+        }
     }
 });
 
@@ -1537,6 +1562,32 @@ document.addEventListener('DOMContentLoaded', function() {
                 clickCount = 0;
                 flipContainer.classList.toggle('flipped');
             }
+        });
+    }
+
+    // Lazy load resume images with Intersection Observer
+    const resumeSection = document.getElementById('resume');
+    const resumeImages = document.querySelectorAll('#resume .lazy-load');
+    if (resumeSection && resumeImages.length > 0 && 'IntersectionObserver' in window) {
+        const resumeObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const img = entry.target;
+                    img.src = img.dataset.src;
+                    img.classList.remove('lazy-load');
+                    resumeObserver.unobserve(img);
+                }
+            });
+        }, {
+            rootMargin: '100px'
+        });
+
+        resumeImages.forEach(img => resumeObserver.observe(img));
+    } else if (resumeImages.length > 0) {
+        // Fallback for browsers without IntersectionObserver
+        resumeImages.forEach(img => {
+            img.src = img.dataset.src;
+            img.classList.remove('lazy-load');
         });
     }
 });

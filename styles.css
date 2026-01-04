@@ -88,6 +88,7 @@ body::after {
     padding: 20px 15px;
     z-index: 1000;
     overflow-y: auto;
+    overflow-x: hidden;
 }
 
 .sidebar-logo {
@@ -95,8 +96,9 @@ body::after {
     padding-bottom: 15px;
     cursor: pointer;
     margin-left: 4px;
-    width: 100%;
-    min-width: 180px;
+    width: calc(100% - 4px);
+    max-width: 170px;
+    overflow: hidden;
 }
 
 .sidebar-logo #logo {
@@ -110,8 +112,8 @@ body::after {
     padding: 10px;
     margin: -10px;
     pointer-events: auto;
-    min-width: 160px;
-    width: auto;
+    max-width: 100%;
+    overflow: hidden;
 }
 
 .sidebar-logo #logoText {
@@ -191,6 +193,8 @@ body::after {
     transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
+    width: 100%;
+    white-space: nowrap;
 }
 
 .nav-menu a span {
@@ -1210,7 +1214,7 @@ footer {
     .sidebar-nav.open {
         transform: translateX(0);
     }
-
+    
     .main-content-wrapper {
         margin-left: 0;
     }
