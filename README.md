@@ -1,9 +1,16 @@
 <img src="https://komarev.com/ghpvc/?username=Ambal-Ced&label=Profile%20views&color=0e75b6&style=flat" alt="profile views" />
 
-
 <h1 align="center">
   <img src="https://readme-typing-svg.herokuapp.com/?font=Righteous&size=35&center=true&vCenter=true&width=500&height=70&duration=4000&lines=Welcome+to+my+GitHub!!;+Hi+There!++ARzen+Here++👋;+I'm+Justine+Cedrick+Ambal!;" />
 </h1>
+
+<p align="center" >
+<img src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExNHhzb3QwOXBoNnA5Nm1zM2FlYWgyczF4dm05dDYwd3A0d2d3YmVtMiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/Mot2nz72u4HFHEw3Fr/giphy.gif" width="280" height="120"/>===========================<img src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExNTZyZG1hbWlpdXNyYm1vZWF2cWQyMWVqOTN0Zm0yN2duMTA3MjFrNyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/21VTFJTEr1x9ortvO3/giphy.gif" width="280" height="120"/>
+</p>
+<h1 align="center">
+<h1 align="center">
+
+
  
 
  
@@ -46,3 +53,7 @@
 
 ### ✍️ Random Dev Quote
 <img src="https://quotes-github-readme.vercel.app/api?type=horizontal&theme=tokyonight">
+
+<h1 align="center">
+<img src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExb3M4emtmYTZjOGNlb3FqMHU1NnhocDFkbHRyejgwNmg5eW9mcnB0ayZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/FnFBUOVUYidBEWn0IT/giphy.gif"/> 
+</h1>
