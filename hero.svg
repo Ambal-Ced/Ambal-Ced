@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="700" viewBox="0 0 1200 700" role="img" aria-label="Ambal-Ced hero banner">
+  <defs>
+    <linearGradient id="shade" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#05070f" stop-opacity="0.25" />
+      <stop offset="1" stop-color="#05070f" stop-opacity="0.65" />
+    </linearGradient>
+  </defs>
+  <image href="bg-portrait.webp" x="0" y="0" width="1200" height="700" preserveAspectRatio="xMidYMid slice" />
+  <rect x="0" y="0" width="1200" height="700" fill="url(#shade)" />
+  <g font-family="Segoe UI, Arial, sans-serif" font-weight="700" text-anchor="middle">
+    <text x="600" y="320" font-size="58" fill="#c9f2ff" opacity="0.25">Hi There!</text>
+    <text x="600" y="320" font-size="58" fill="#c9f2ff">Hi There!</text>
+    <text x="600" y="410" font-size="64" fill="#8bdcff" opacity="0.25">I'm Ambal-Ced!</text>
+    <text x="600" y="410" font-size="64" fill="#8bdcff">I'm Ambal-Ced!</text>
+  </g>
+</svg>
